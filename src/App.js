@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Spinner } from 'react-bootstrap';
 import './App.css';
 import News from './components/News/News';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,11 +16,15 @@ function App() {
   }, [])
   return (
     <div>
-      <Row>
-        {
-          news.map(nw => <News nw={nw}></News>)
-        }
-      </Row>
+      {news.length === 0 ?
+        <Spinner animation="border" variant="danger" className="text-center" />
+        :
+        <Row>
+          {
+            news.map(nw => <News nw={nw}></News>)
+          }
+        </Row>
+      }
     </div>
   );
 }
